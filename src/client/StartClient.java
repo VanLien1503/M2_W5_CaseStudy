@@ -45,7 +45,7 @@ public class StartClient extends Application {
     //Khởi chạy phần mềm:
     public static void main(String[] args) {
         try {
-            System.out.println("Connected to server");
+            System.out.println("Connecting to server");
             //Bật màn hình đăng nhập:
             launch(args);
 

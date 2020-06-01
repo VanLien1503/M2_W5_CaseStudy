@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import tools.ServerIP;
 import tools.SwitchPanel;
 
 import java.net.MalformedURLException;
@@ -74,7 +75,7 @@ public class SignUpController {
     IUserManager userManager;
     {
         try {
-            userManager = (IUserManager) Naming.lookup("rmi://192.168.1.68/Server");
+            userManager = (IUserManager) Naming.lookup(ServerIP.SERVER_IP);
         } catch (NotBoundException | MalformedURLException | RemoteException e) {
             e.printStackTrace();
         }

@@ -8,6 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import library.javaScript.JavaScriptLibrary;
 import server.serverInterface.ILibraryManager;
+import tools.ServerIP;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -37,7 +38,7 @@ public class JavaScriptPanelController extends LibraryController<JavaScriptLibra
     @Override
     public void loadLibrary() throws RemoteException, NotBoundException, MalformedURLException {
         //Gọi interface ILibraryManager:
-        ILibraryManager libraryManager = (ILibraryManager) Naming.lookup("rmi://192.168.1.68/Server");
+        ILibraryManager libraryManager = (ILibraryManager) Naming.lookup(ServerIP.SERVER_IP);
         ArrayList<JavaScriptLibrary> list = libraryManager.getJSLibrary();
 
         //Lấy dữ liệu trả về từ server hiển thị lên bảng:

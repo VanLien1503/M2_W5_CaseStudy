@@ -22,7 +22,7 @@ public class FileDownloadManager<LibraryType extends Library> {
         String selectedItemPath = getSelectedItemPath(tbData);
 
         //Gọi interface gửi file đã lấy được địa chỉ từ server:
-        ISentFile server = (ISentFile) Naming.lookup("rmi://192.168.1.68/Server");
+        ISentFile server = (ISentFile) Naming.lookup(ServerIP.SERVER_IP);
         server.getRequestedFile(selectedItemPath);
 
         //Mở của sổ để chọn địa chỉ lưu file trên client:
