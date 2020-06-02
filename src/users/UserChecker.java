@@ -36,6 +36,18 @@ public class UserChecker {
         return true;
     }
 
+    public boolean isOldUser(String name, String email) {
+        FileReaderAndWriter<User> fileReaderAndWriter = new FileReaderAndWriter<>();
+        ArrayList<User> usersList = (ArrayList<User>) fileReaderAndWriter.readFile("/src/users/UsersList.txt");
+
+        for (User user: usersList) {
+            if (name.equals(user.getName()) && email.equals(user.getEmail())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void saveNewUser(String name, String email, String password) {
         User user = new User(name, email, password, "User");
         FileReaderAndWriter<User> fileReaderAndWriter = new FileReaderAndWriter<>();

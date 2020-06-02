@@ -42,6 +42,17 @@ public class Server extends UnicastRemoteObject implements ISentFile, IUserManag
         userChecker.saveNewUser(name, email, password);
     }
 
+    @Override
+    public void saveNewUserInfo(String name, String email, String password) throws RemoteException {
+        userChecker.saveNewUserInfo(name, email, password);
+    }
+
+    @Override
+    public boolean checkOldUser(String name, String email) throws RemoteException {
+        userChecker.saveNewUserInfo(name, email, email);
+        return false;
+    }
+
     //Lấy danh sách thư viện JavaScript từ server:
     @Override
     public ArrayList<JavaScriptLibrary> getJSLibrary() throws RemoteException {

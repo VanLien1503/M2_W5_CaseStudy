@@ -11,4 +11,6 @@ public interface IUserManager extends Remote {
     void saveNewUser(String name, String email, String password) throws RemoteException;
 
     void saveNewUserInfo(String name, String email, String password) throws RemoteException;
+
+    boolean checkOldUser(String name, String email) throws RemoteException;
 }

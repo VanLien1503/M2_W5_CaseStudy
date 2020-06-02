@@ -82,19 +82,19 @@ public class ResetPasswordController {
     }
 
     //Lưu thông tin đăng ký:
-    public void signUp(MouseEvent event) {
+    public void updatePassword(MouseEvent event) {
         String name = txtUserName.getText();
         String email = txtEmail.getText();
         String password = txtPassword.getText();
         String confirmPassword = txtConfirmPassword.getText();
 
-        if (isValidUserName(name) && isValidEmail(email) && isValidPassword(password) && isValidConfirmPassword(password, confirmPassword)) {
+        if (isValidUserName(name) && isValidEmail(name, email) && isValidPassword(password) && isValidConfirmPassword(password, confirmPassword)) {
             try {
                 userManager.saveNewUserInfo(name, email, password);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-            SwitchPanel.switchPanel(event, "/fxml/SignIn.fxml");
+            SwitchPanel.switchPanel(event, "/fxml/userFxml/Home.fxml");
         }
     }
 
@@ -103,7 +103,7 @@ public class ResetPasswordController {
         String regex = "[A-Z][a-z0-9]{1,9}$";
         boolean status = true;
 
-        signUpStatus(Color.GREEN, "Username available", lblUserErrors);
+        signUpStatus(Color.GREEN, "Username match", lblUserErrors);
 
         if (!Pattern.matches(regex, name)) {
             signUpStatus(Color.TOMATO, "Username must start with uppercase and 2 to 10 characters", lblUserErrors);
@@ -111,9 +111,9 @@ public class ResetPasswordController {
         }
 
         try {
-            if (!userManager.checkValidUser(name)) {
-                signUpStatus(Color.TOMATO, "Username already exists", lblUserErrors);
-                status = false;
+            if (userManager.checkValidUser(name)) {
+                signUpStatus(Color.TOMATO, "Enter your name", lblUserErrors);
+                status = true;
             }
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -123,11 +123,11 @@ public class ResetPasswordController {
     }
 
     //Kiểm tra email đăng ký:
-    public boolean isValidEmail(String email) {
+    public boolean isValidEmail(String name, String email) {
         String regex = "^[a-zA-Z][\\w]{0,15}+@gmail.com$";
         boolean status = true;
 
-        signUpStatus(Color.GREEN, "Email available", lblEmailErrors);
+        signUpStatus(Color.GREEN, "Email match", lblEmailErrors);
 
         if (!Pattern.matches(regex, email)) {
             signUpStatus(Color.TOMATO, "Email must be gmail", lblEmailErrors);
@@ -135,8 +135,8 @@ public class ResetPasswordController {
         }
 
         try {
-            if (!userManager.checkValidUser(email)) {
-                signUpStatus(Color.TOMATO, "Username already exists", lblEmailErrors);
+            if (!userManager.checkOldUser(name, email)) {
+                signUpStatus(Color.TOMATO, "Enter your email", lblEmailErrors);
                 status = false;
             }
         } catch (RemoteException e) {
