@@ -6,9 +6,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import library.java.JavaLibrary;
 import server.serverInterface.ILibraryManager;
 import tools.ServerIP;
+import tools.SwitchPanel;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
