@@ -62,5 +62,9 @@ public class HomeController {
         SwitchPanel.switchPanel(event, "/fxml/Software.fxml");
     }
 
+    @FXML
+    void openSettingPanel(MouseEvent event) {
+        SwitchPanel.switchPanel(event, "/fxml/userFxml/ResetPassword.fxml");
+    }
 
 }

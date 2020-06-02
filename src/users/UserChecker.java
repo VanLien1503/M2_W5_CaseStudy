@@ -45,4 +45,18 @@ public class UserChecker {
         usersList.add(user);
         fileReaderAndWriter.writeToFile(usersList, "/src/users/UsersList.txt");
     }
+
+    public void saveNewUserInfo(String name, String email, String password) {
+        FileReaderAndWriter<User> fileReaderAndWriter = new FileReaderAndWriter<>();
+
+        ArrayList<User> usersList = (ArrayList<User>) fileReaderAndWriter.readFile("/src/users/UsersList.txt");
+
+        for (User user: usersList) {
+            if (name.equals(user.getName()) && email.equals(user.getEmail())) {
+                user.setPassword(password);
+            }
+        }
+
+        fileReaderAndWriter.writeToFile(usersList, "/src/users/UsersList.txt");
+    }
 }
